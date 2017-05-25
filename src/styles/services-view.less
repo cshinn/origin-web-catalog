@@ -1,4 +1,8 @@
 .services-view {
+  @media(min-width: @screen-sm-min) {
+    margin-left: (@grid-gutter-width  / 2);
+    margin-right: (@grid-gutter-width  / 2);
+  }
   .services-item {
     color: @text-color;
     min-height: 160px;
@@ -115,10 +119,10 @@
     flex-wrap: wrap;
     padding: 15px (@grid-gutter-width / 2) 0;
     position: relative;
-
     .services-items {
       border-top: 1px solid @color-pf-black-300;
       left: 0;
+      margin: 10px (@grid-gutter-width / 2);
       position: absolute;
       right: 0;
     }
@@ -128,19 +132,28 @@
     background-color: @color-pf-white;
     border: 1px solid @color-pf-black-300;
     display: inline-block;
-    margin: 0 -1px -1px 0;
+    margin: 0 3px 3px 0;
 
     &.active .services-sub-category-tab {
       color: @text-color !important;
-      &:after { // shim to hide bottom border
-        background: @color-pf-white;
-        bottom: -1px;
+      &:after,
+      &:before {
+        border-bottom-color: @dropdown-border;
+        border-bottom-style: solid;
+        border-bottom-width: 10px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
         content: "";
-        height: 1px;
+        display: inline-block;
+        left: 35px;
         position: absolute;
-        left: 0;
-        right: 0;
-        z-index: 2;
+        bottom: -13px;
+      }
+      &:after {
+        border-bottom-color: @dropdown-bg;
+        bottom: -13px;
+        //cover top border
+        z-index: 1;
       }
       .services-sub-category-tab-image img {
         opacity: 1;

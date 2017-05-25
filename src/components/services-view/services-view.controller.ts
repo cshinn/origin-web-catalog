@@ -65,12 +65,17 @@ export class ServicesViewController implements angular.IController {
     }
 
     this.ctrl.currentFilter = category;
-    this.ctrl.currentSubFilter = (this.ctrl.subCategories.length === 1) ? this.ctrl.subCategories[0].id : (subCategory || 'all');
+    this.ctrl.currentSubFilter = (this.ctrl.subCategories.length === 1) ? this.ctrl.subCategories[0].id : (subCategory || null);
     this.updateActiveCardStyles();
   };
 
   public selectSubCategory(subCategory: string) {
-    this.filterByCategory(this.ctrl.currentFilter, subCategory, false);
+    if (this.ctrl.currentSubFilter == subCategory) {
+      this.ctrl.currentSubFilter = null;
+      this.filterByCategory(this.ctrl.currentFilter, null, true);
+    } else {
+      this.filterByCategory(this.ctrl.currentFilter, subCategory, false);
+    }
   }
 
   public getSubCategories(category: string) {
@@ -97,7 +102,7 @@ export class ServicesViewController implements angular.IController {
     $('.services-sub-category').removeAttr('style');
     let activeCat = $('.services-sub-category.active');
     let contentHeight = activeCat.find('.services-items').innerHeight();
-    activeCat.css('margin-bottom', contentHeight + 'px');
+    activeCat.css('margin-bottom', (contentHeight+20) + 'px');
   }
 
   private updateActiveCardStyles() {

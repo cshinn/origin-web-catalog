@@ -9,7 +9,7 @@
       <li ng-repeat="category in $ctrl.categories"
           ng-if="category.hasItems"
           ng-class="{'active': $ctrl.currentFilter === category.id}">
-        <a href="" id="{{'category-'+category.id}}" ng-click="$ctrl.filterByCategory(category.id, 'all', true)">{{category.label}}</a>
+        <a href="" id="{{'category-'+category.id}}" ng-click="$ctrl.filterByCategory(category.id, 'null', true)">{{category.label}}</a>
       </li>
     </ul>
 
